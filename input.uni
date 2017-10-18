@@ -1,0 +1,9 @@
+25 25
+A libw.so
+T libx.so
+C liby.so
+G libz.so
+3
+A A T C G 4 3
+C C C T C 2 5
+G C T A A 1 7
