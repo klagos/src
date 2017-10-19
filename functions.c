@@ -5,15 +5,16 @@ typedef struct Cell{
         int x,y;
         char tuple[5];
         int id;
-        bool alive; //arreglar
+        bool alive;
 }Cell;
 
 /*
- * The struct cellContainer will have an dynamic array of cells, every 
+ * The struct cellContainer will have a dynamic array of cells, every 
  * cellContainer will be added into our universe.
 */
 typedef struct cellContainer{
         Cell *array;
+        int cant;
 }cellContainer;
 
 /*
@@ -44,15 +45,14 @@ cellContainer **createUniverse(int rows, int column)
         for (int i = 0; i < rows; i++)
                 universe[i] = (cellContainer*)malloc(sizeof(cellContainer)*column);
         return universe;
-
 }
 
 //void addToUniverse(Cell *universe, Cell *cell, int x, int y)
 //{
 //        return
 //}
-//
-//void verifySize(cellContainer *array)
-//{
-//
-//}
+
+void verifySize(cellContainer *array)
+{
+
+}

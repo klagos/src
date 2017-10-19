@@ -17,6 +17,7 @@ int main(int argc, const char **argv)
         int row,column, n_of_cells, id = 0, n_of_line = 1;
         char line[999], lib1[7], lib2[7], lib3[7], lib4[7];
         char ch1,ch2,ch3,ch4,ch5,A,C,T,G;
+        void *liba, *libc, *libg, *libt;
         int posx,posy;
         while(fscanf(input, "%[^\n]\n", line) != EOF) {
                 if (n_of_line == 1) {
@@ -24,12 +25,36 @@ int main(int argc, const char **argv)
                         cellContainer **universe = createUniverse(row, column);
                 } else if (n_of_line == 2) {
                         sscanf(line, "%c %s", &A, lib1);
+                        liba = dlopen(lib1, RTLD_NOW);
+                        void(*Abehavior)(char, int*) = dlsym(liba, "genetic_behaviour");
+                        if (Abehavior == NULL) {
+                        fprintf(stderr, "dlsym: %s\n", dlerror());
+                        //exit(EXIT_FAILURE);
+                        }
                 } else if (n_of_line == 3) {
                         sscanf(line, "%c %s", &T, lib2);
+                        libt = dlopen(lib2, RTLD_NOW);
+                        void(*Tbehavior)(char, int*) = dlsym(liba, "genetic_behaviour");
+                        if (Tbehavior == NULL) {
+                        fprintf(stderr, "dlsym: %s\n", dlerror());
+                        //exit(EXIT_FAILURE);
+                        }
                 } else if (n_of_line == 4) {
                         sscanf(line, "%c %s", &C, lib3);
+                        libc = dlopen(lib3, RTLD_NOW);
+                        void(*Cbehavior)(char, int*) = dlsym(liba, "genetic_behaviour");
+                        if (Cbehavior == NULL) {
+                        fprintf(stderr, "dlsym: %s\n", dlerror());
+                        //exit(EXIT_FAILURE);
+                        }
                 } else if (n_of_line == 5) {
                         sscanf(line, "%c %s", &G, lib4);
+                        libg = dlopen(lib4, RTLD_NOW);
+                        void(*Gbehavior)(char, int*) = dlsym(liba, "genetic_behaviour");
+                        if (Gbehavior == NULL) {
+                        fprintf(stderr, "dlsym: %s\n", dlerror());
+                        //exit(EXIT_FAILURE);
+                        }
                 } else if (n_of_line == 6) {
                         sscanf(line, "%d", &n_of_cells);
                 } else {
@@ -39,8 +64,8 @@ int main(int argc, const char **argv)
                         printf("%d %d\n", newCell->x, newCell->y);
                         id++;
                 }
+                        n_of_line++;
         }
-                n_of_line++;
         fclose(input);
     /*
     if (argc != 2) {
@@ -66,5 +91,6 @@ int main(int argc, const char **argv)
                impl_name, i, impl(i));
     }
     */
+
     return 0;
 }
