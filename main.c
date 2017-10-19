@@ -34,7 +34,7 @@ int main(int argc, const char **argv)
                 } else if (n_of_line == 3) {
                         sscanf(line, "%c %s", &T, lib2);
                         libt = dlopen(lib2, RTLD_NOW);
-                        void(*Tbehavior)(char, int*) = dlsym(liba, "genetic_behaviour");
+                        void(*Tbehavior)(char, int*) = dlsym(libt, "genetic_behaviour");
                         if (Tbehavior == NULL) {
                         fprintf(stderr, "dlsym: %s\n", dlerror());
                         //exit(EXIT_FAILURE);
@@ -42,7 +42,7 @@ int main(int argc, const char **argv)
                 } else if (n_of_line == 4) {
                         sscanf(line, "%c %s", &C, lib3);
                         libc = dlopen(lib3, RTLD_NOW);
-                        void(*Cbehavior)(char, int*) = dlsym(liba, "genetic_behaviour");
+                        void(*Cbehavior)(char, int*) = dlsym(libc, "genetic_behaviour");
                         if (Cbehavior == NULL) {
                         fprintf(stderr, "dlsym: %s\n", dlerror());
                         //exit(EXIT_FAILURE);
@@ -50,7 +50,7 @@ int main(int argc, const char **argv)
                 } else if (n_of_line == 5) {
                         sscanf(line, "%c %s", &G, lib4);
                         libg = dlopen(lib4, RTLD_NOW);
-                        void(*Gbehavior)(char, int*) = dlsym(liba, "genetic_behaviour");
+                        void(*Gbehavior)(char, int*) = dlsym(libg, "genetic_behaviour");
                         if (Gbehavior == NULL) {
                         fprintf(stderr, "dlsym: %s\n", dlerror());
                         //exit(EXIT_FAILURE);
