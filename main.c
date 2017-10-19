@@ -13,7 +13,7 @@
 
 int main(int argc, const char **argv)
 {
-        FILE *input = fopen("input.uni", "r");
+        FILE *input = fopen("init.uni", "r");
         int row,column, n_of_cells, id = 0, n_of_line = 1;
         char line[999], lib1[7], lib2[7], lib3[7], lib4[7];
         char ch1,ch2,ch3,ch4,ch5,A,C,T,G;
